@@ -11,7 +11,7 @@ import(
 
 func main(){
 	
-	if len(os.Args) != 4 {
+	if len(os.Args) != 3 {
 		fmt.Println("Usage: make sequential [matrizN] [seed]")
 	}
 	args := os.Args
@@ -25,17 +25,19 @@ func main(){
 	}
 	
 	// A * X  = B
-	var B,X []float64
-	var A [][]float64
+	B := make([]float64, N)
+	X := make([]float64, N)
+	A := make([][]float64, N)
 	
 	fmt.Printf("Matriz dimension size: %d.\n Seed: %d.\n", N, seed)
 	
+	rand.Seed(int64(seed))
 	// Initialize A, B and X
 	for i := 0; i < N; i++ {
 		for j := 0; j < N; j++ {
-			A[j][i] = float64(rand.Seed(int64(seed))) /32768.0
+			A[j][i] = rand.Float64() /32768.0
 		}
-		B[i] =  float64(rand.Seed(int64(seed))) /32768.0
+		B[i] =  rand.Float64() /32768.0
 		X[i] = 0.0
 	}
 	
