@@ -41,6 +41,10 @@ func main(){
 	
 	// Print inputs
 	printIn(N,A,B,X)
+	
+	gauss(N,X,B,A)
+	
+	printOut(N,X)
 
 }
 
