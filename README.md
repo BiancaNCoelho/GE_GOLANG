@@ -5,6 +5,7 @@ Gaussian Elimination implemented with GO language.
 ## Compile and Run
 
 Compile:
+
 '''
 	make sequential
 
@@ -12,6 +13,7 @@ Compile:
 
 	make parallel
 '''
+
 Run:
 
 >	./GOsequential [matrixSize] [Seed]
