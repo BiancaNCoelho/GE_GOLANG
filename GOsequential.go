@@ -15,18 +15,18 @@ func main(){
 		fmt.Println("Usage: make sequential [matrizN] [seed]")
 	}
 	args := os.Args
-	N, err1 := strconv.Atoi(args[3])
+	N, err1 := strconv.Atoi(args[1])
 	if err1 == nil {
 		fmt.Println(err1)
 	}
-	seed, err2 := strconv.Atoi(args[4])
+	seed, err2 := strconv.Atoi(args[2])
 	if err2 == nil{
 		fmt.Println(err2)
 	}
 	
 	// A * X  = B
-	var B,X [N]float64
-	var A [N][N]float64
+	var B,X []float64
+	var A [][]float64
 	
 	fmt.Printf("Matriz dimension size: %d.\n Seed: %d.\n", N, seed)
 	
@@ -42,9 +42,12 @@ func main(){
 	// Print inputs
 	printIn(N,A,B,X)
 	
+	//Gauss elimination
 	start := time.Now()
 	gauss(N,X,B,A)
 	end := time.Now()
+	
+	//Print result and time
 	printOut(N,X)
 	fmt.Printf("Time taken: %d. \n", end.Sub(start))
 
