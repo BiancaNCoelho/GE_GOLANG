@@ -42,9 +42,11 @@ func main(){
 	// Print inputs
 	printIn(N,A,B,X)
 	
+	start := time.Now()
 	gauss(N,X,B,A)
-	
+	end := time.Now()
 	printOut(N,X)
+	fmt.Printf("Time taken: %d. \n", end.Sub(start))
 
 }
 
