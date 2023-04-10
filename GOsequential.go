@@ -16,11 +16,11 @@ func main(){
 	}
 	args := os.Args
 	N, err1 := strconv.Atoi(args[1])
-	if err1 == nil {
+	if err1 != nil {
 		fmt.Println(err1)
 	}
 	seed, err2 := strconv.Atoi(args[2])
-	if err2 == nil{
+	if err2 != nil{
 		fmt.Println(err2)
 	}
 	
@@ -29,15 +29,15 @@ func main(){
 	X := make([]float64, N)
 	A := make([][]float64, N)
 	
-	fmt.Printf("Matriz dimension size: %d.\n Seed: %d.\n", N, seed)
+	fmt.Printf("Matriz dimension size: %d.\nSeed: %d.\n", N, seed)
 	
-	rand.Seed(int64(seed))
+	r := rand.New(rand.NewSource(int64(seed)))
 	// Initialize A, B and X
 	for i := 0; i < N; i++ {
 		for j := 0; j < N; j++ {
-			A[j][i] = rand.Float64() /32768.0
+			A[j][i] = r.Float64() /32768.0
 		}
-		B[i] =  rand.Float64() /32768.0
+		B[i] =  r.Float64() /32768.0
 		X[i] = 0.0
 	}
 	
