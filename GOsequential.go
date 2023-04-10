@@ -51,7 +51,7 @@ func printIn(N int, A [][]float64, B,X []float64){
 		for j := 0; j < N; j++{
 			fmt.Printf("[ %v ]", A[i][j])			
 		}
-		fmt.Println(\n)
+		fmt.Printf("\n")
 	}
 	fmt.Println("--B--")
 	for i := 0; i < N; i++{
@@ -67,7 +67,7 @@ func printIn(N int, A [][]float64, B,X []float64){
 func printOut(N int, X []float64){
 	fmt.Printf("--Answer--")
 	for i := 0; i < N; i++{
-		fmt.Pintln("[ %v ]", X[i])
+		fmt.Println("[ %v ]", X[i])
 	}
 }
 
@@ -85,7 +85,7 @@ func gauss(N int, X,B []float64, A [][]float64){
 		}
 	}
 	
-	for row = N1; row >= 0; row--{
+	for row = N-1; row >= 0; row--{
 		X[row] = B[row]
 		for col = N-1; col > row; col-- {
 			X[row] -= A[row][col] * X[col]
