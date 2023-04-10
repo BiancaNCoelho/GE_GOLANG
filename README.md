@@ -7,11 +7,13 @@ Gaussian Elimination implemented with GO language.
 Compile:
 
 '''	
+
 make sequential
 
 make concurrent
 
 make parallel
+
 '''
 
 Run:
