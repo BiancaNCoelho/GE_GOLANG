@@ -5,7 +5,7 @@ import(
 	"fmt"
 	"time"
 	"strconv"
-	"rand"
+	"math/rand"
 	"os"
 )
 
