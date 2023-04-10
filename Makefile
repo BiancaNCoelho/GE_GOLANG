@@ -8,6 +8,6 @@ concurrent: GOconcurrent.go
 
 parallel: GOparallel.go
 	$(GO) build -o GOparallel GOparallel.go
-
+	
 clean: 
-	rm -rf *.out
+	$(GO) clean
