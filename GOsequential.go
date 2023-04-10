@@ -28,6 +28,9 @@ func main(){
 	B := make([]float64, N)
 	X := make([]float64, N)
 	A := make([][]float64, N)
+	for i := range A {
+		A[i] = make([]float64, N)
+	}
 	
 	fmt.Printf("Matriz dimension size: %d.\nSeed: %d.\n", N, seed)
 	
@@ -56,7 +59,7 @@ func main(){
 }
 
 func printIn(N int, A [][]float64, B,X []float64){
-	
+	fmt.Printf("\n")
 	fmt.Println("--A--")
 	for i := 0; i < N; i++{
 		for j := 0; j < N; j++{
@@ -68,18 +71,22 @@ func printIn(N int, A [][]float64, B,X []float64){
 	for i := 0; i < N; i++{
 		fmt.Printf("[ %v ]", B[i])
 	}
+	fmt.Printf("\n")
 	fmt.Println("--X--")
 	for i := 0; i < N; i++{
 		fmt.Printf("[ %v ]", X[i])
 	}
+	fmt.Printf("\n")
 
 }
 
 func printOut(N int, X []float64){
+	fmt.Printf("\n")
 	fmt.Printf("--Answer--")
 	for i := 0; i < N; i++{
-		fmt.Println("[ %v ]", X[i])
+		fmt.Printf("[ %v ]", X[i])
 	}
+	fmt.Printf("\n")
 }
 
 func gauss(N int, X,B []float64, A [][]float64){
