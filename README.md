@@ -4,6 +4,7 @@ Gaussian Elimination implemented with GO language.
 
 ## Compile and Run
 
+### LINUX
 Compile:
 
 >	make sequential
@@ -19,6 +20,14 @@ Run:
 >	./GOconcurrent [matrixSize] [Seed]
 
 >	./GOparallel [matrixSize] [Seed]
+
+### Windows
+
+> go run GOsequential.go [matrixSize] [Seed]
+
+> go run GOconcurrent.go [matrixSize] [Seed]
+
+> go run GOparallel.go [matrixSize] [Seed]
 
 ## Colaborator(s)
 
