@@ -16,6 +16,10 @@ Run:
 
 >	./GOsequential [matrixSize] [Seed]
 
+>	./GOconcurrent [matrixSize] [Seed]
+
+>	./GOparallel [matrixSize] [Seed]
+
 ## Colaborator(s)
 
 Raíssa Nunes Coelho

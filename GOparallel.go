@@ -6,6 +6,7 @@ import(
 	"fmt"
 	"time"
 	"strconv"
+	"sync"
 	"math/rand"
 	"runtime"
 	"os"
@@ -41,6 +42,8 @@ func main(){
 	var num_procs int
 	num_procs = runtime.NumCPU()
 	
+	var wg sync.WaitGroup
+	
 	fmt.Printf("Matriz dimension size: %d.\nSeed: %d.\nNum_Procs: %d.\n", N, seed, num_procs)
 	
 	r := rand.New(rand.NewSource(int64(seed)))
@@ -58,9 +61,11 @@ func main(){
 	
 	//Gauss elimination
 	start := time.Now()
+	wg.Add(num_procs)
 	for i := 0; i < num_procs; i++ {
-		go gauss(N,X,B,A)
+		go gauss(N,X,B,A, &wg)
 	}
+	wg.Wait()
 	end := time.Now()
 	
 	//Print result and time
@@ -100,7 +105,8 @@ func printOut(N int, X []float64){
 	fmt.Printf("\n")
 }
 
-func gauss(N int, X,B []float64, A [][]float64){
+func gauss(N int, X,B []float64, A [][]float64, wg *sync.WaitGroup){
+	defer wg.Done()
 	var multiplier float64
 	var norm, col, row int
 	
