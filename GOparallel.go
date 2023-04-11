@@ -1,4 +1,4 @@
-//GOconcurrent.go
+//GOcparallel.go
 
 package main
 
@@ -7,13 +7,18 @@ import(
 	"time"
 	"strconv"
 	"math/rand"
+	"runtime"
 	"os"
 )
+
+func init(){
+	runtime.GOMAXPROCS(runtime.NumCPU())
+}
 
 func main(){
 	
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: make concurrent [matrizN] [seed]")
+		fmt.Println("Usage: make parallel [matrizN] [seed]")
 	}
 	args := os.Args
 	N, err1 := strconv.Atoi(args[1])
@@ -33,7 +38,10 @@ func main(){
 		A[i] = make([]float64, N)
 	}
 	
-	fmt.Printf("Matriz dimension size: %d.\nSeed: %d.\n", N, seed)
+	var num_procs int
+	num_procs = runtime.NumCPU()
+	
+	fmt.Printf("Matriz dimension size: %d.\nSeed: %d.\nNum_Procs: %d.\n", N, seed, num_procs)
 	
 	r := rand.New(rand.NewSource(int64(seed)))
 	// Initialize A, B and X
@@ -50,7 +58,9 @@ func main(){
 	
 	//Gauss elimination
 	start := time.Now()
-	go gauss(N,X,B,A)
+	for i := 0; i < num_procs; i++ {
+		go gauss(N,X,B,A)
+	}
 	end := time.Now()
 	
 	//Print result and time

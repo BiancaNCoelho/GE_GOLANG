@@ -82,7 +82,7 @@ func printIn(N int, A [][]float64, B,X []float64){
 
 func printOut(N int, X []float64){
 	fmt.Printf("\n")
-	fmt.Printf("--Answer--")
+	fmt.Printf("--Answer--\n")
 	for i := 0; i < N; i++{
 		fmt.Printf("[ %v ]", X[i])
 	}
