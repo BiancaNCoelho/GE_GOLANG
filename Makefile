@@ -11,3 +11,4 @@ parallel: GOparallel.go
 	
 clean: 
 	$(GO) clean
+	rm -f ~.o
