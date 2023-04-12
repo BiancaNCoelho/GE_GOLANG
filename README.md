@@ -1,33 +1,10 @@
-# Gaussian Elimination - GO
+# Gaussian Elimination - GO - RUST
 
-Gaussian Elimination implemented with GO language. 
+Gaussian Elimination implemented with GO language and RUST language. 
 
 ## Compile and Run
 
-### LINUX
-Compile:
-
->	make sequential
-
->	make concurrent
-
->	make parallel
-	
-Run:
-
->	./GOsequential [matrixSize] [Seed]
-
->	./GOconcurrent [matrixSize] [Seed]
-
->	./GOparallel [matrixSize] [Seed]
-
-### Windows
-
-> go run GOsequential.go [matrixSize] [Seed]
-
-> go run GOconcurrent.go [matrixSize] [Seed]
-
-> go run GOparallel.go [matrixSize] [Seed]
+Read README.md in the directories.
 
 ## Colaborator(s)
 
