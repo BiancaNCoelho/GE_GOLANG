@@ -62,7 +62,7 @@ func main() {
 
 	//Print result and time
 	printOut(N, X)
-	fmt.Printf("Time taken: %d. \n", end.Sub(start))
+	fmt.Printf("Time taken: \n" + fmt.Sprint(end.Sub(start)))
 
 }
 
