@@ -3,7 +3,7 @@
 
 ## Compile and Run
 
-### LINUX
+### LINUX - Windows
 Compile:
 
 >	cargo build
@@ -15,7 +15,3 @@ Run:
 Choice:
 
 1.Sequential
-
-### Windows
-
-//
