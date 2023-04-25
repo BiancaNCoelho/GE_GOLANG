@@ -3,6 +3,8 @@
 
 ## Compile and Run
 
+The coompilation and execution must be made inside rust directory!
+
 ### LINUX - Windows
 Compile:
 
