@@ -2,6 +2,9 @@
 mod sequential;
 mod threads;
 mod chunk;
+mod parallel;
+mod pool;
+mod chunk_pool;
 
 use std::env;
 use rand::{Rng,SeedableRng};
@@ -69,8 +72,29 @@ fn main(){
 		let end = start.elapsed();
 		println!("Time elapsed: {:?}", end);
 		println!("Threads Number: {}", num_thread);
-	} else if c > 3 || c < 1{
-		println!("Usage: 1 - sequential, 2 - concurrent, 3 - parallel");	
+	} else if c == 4{ // parallel -- using Rayon
+		let start = Instant::now();
+		// Gauss Elimination
+		parallel::gauss(n_size, &mut b, &mut x, &mut a, num_thread);
+		let end = start.elapsed();
+		println!("Time elapsed: {:?}", end);
+		println!("Threads Number: 0");
+	} else if c == 5{ // pool of threads
+		let start = Instant::now();
+		// Gauss Elimination
+		pool::gauss(n_size, &mut b, &mut x, &mut a, num_thread);
+		let end = start.elapsed();
+		println!("Time elapsed: {:?}", end);
+		println!("Threads Number: {}", num_thread);
+	} else if c == 6{ // pool of threads in chunks
+		let start = Instant::now();
+		// Gauss Elimination
+		chunk_pool::gauss(n_size, &mut b, &mut x, &mut a, num_thread);
+		let end = start.elapsed();
+		println!("Time elapsed: {:?}", end);
+		println!("Threads Number: {}", num_thread);
+	} else if c > 6 || c < 1{
+		println!("Usage: 1 - sequential, 2 - threads, 3 - chunks, 4 - parallel, 5 - pool of threads, 6 - pool with chunk");	
 	}
 	//Print outout X
 	printout(n_size, &mut x);
