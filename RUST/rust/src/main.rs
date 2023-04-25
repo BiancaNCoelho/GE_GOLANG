@@ -1,6 +1,7 @@
 //RUSTsequential.rs
 mod sequential;
 mod threads;
+mod chunk;
 
 use std::env;
 use rand::{Rng,SeedableRng};
@@ -10,17 +11,19 @@ use std::time::Instant;
 fn main(){
 	
 	let args: Vec<String> = env::args().collect();
-	if args.len() < 4 || args.len() > 4 {
+	if args.len() < 5 || args.len() > 5 {
 		println!("Not enough arguments.");
 	}
 	
 	let n = &args[1];
 	let seed = &args[2];
 	let condition = &args[3];
+	let n_t = &args[4];
 	
 	let n_size: usize = n.parse().unwrap();
 	let s_size: u64 = seed.parse().unwrap();
 	let c: usize = condition.parse().unwrap();
+	let num_thread: usize = n_t.parse().unwrap();
 	
 	let mut b = vec![0.0;n_size];
 	let mut x = vec![0.0;n_size];
@@ -45,21 +48,27 @@ fn main(){
 	// Print Inputs
 	printin(n_size, &mut b, &mut x, &mut a);
 	
-	if c == 1{
+	if c == 1{ //sequential
 		let start = Instant::now();
 		// Gauss Elimination
 		sequential::gauss(n_size, &mut b, &mut x, &mut a);
 		let end = start.elapsed();
 		println!("Time elapsed: {:?}", end);
-	}else if c == 2{
+		println!("Threads Number: 0");
+	}else if c == 2{ //threads
 		let start = Instant::now();
 		// Gauss Elimination
 		threads::gauss(n_size, &mut b, &mut x, &mut a);
 		let end = start.elapsed();
 		println!("Time elapsed: {:?}", end);
-	
-	} else if c == 3{
-		println!("3!!");
+		println!("Threads Number: 0");
+	} else if c == 3{ //chunk of threads
+		let start = Instant::now();
+		// Gauss Elimination
+		chunk::gauss(n_size, &mut b, &mut x, &mut a, num_thread);
+		let end = start.elapsed();
+		println!("Time elapsed: {:?}", end);
+		println!("Threads Number: {}", num_thread);
 	} else if c > 3 || c < 1{
 		println!("Usage: 1 - sequential, 2 - concurrent, 3 - parallel");	
 	}
