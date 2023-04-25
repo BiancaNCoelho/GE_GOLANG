@@ -1,5 +1,6 @@
 //RUSTsequential.rs
 mod sequential;
+mod threads;
 
 use std::env;
 use rand::{Rng,SeedableRng};
@@ -51,7 +52,11 @@ fn main(){
 		let end = start.elapsed();
 		println!("Time elapsed: {:?}", end);
 	}else if c == 2{
-		println!("2!");
+		let start = Instant::now();
+		// Gauss Elimination
+		threads::gauss(n_size, &mut b, &mut x, &mut a);
+		let end = start.elapsed();
+		println!("Time elapsed: {:?}", end);
 	
 	} else if c == 3{
 		println!("3!!");
