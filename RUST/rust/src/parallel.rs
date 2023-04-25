@@ -1,34 +1,21 @@
-use std::thread;
+use rayon::prelude::*;
 
-pub fn gauss(n_size: usize, b: &mut Vec<f64>, x: &mut Vec<f64>, a: &mut Vec<Vec<f64>>, num_thread: usize){
-	let mut threads_num = Vec::new();
+pub fn gauss(n_size: usize, b: &mut Vec<f64>, x: &mut Vec<f64>, a: &mut Vec<Vec<f64>>){
 	
 	for norm in 0..(n_size-1) {
-		for i in 0..(num_thread){
-			let mut at = a.clone();
-			let mut bt = b.clone();
-			let t = thread::spawn(move ||{
-				for row in norm+1..n_size {
-					let multiplier = at[row][norm]/at[norm][norm];
-					for col in norm..n_size {
-						at[row][col] -= at[norm][col] * multiplier;
-					}
-					bt[row] -= bt[norm] * multiplier;
-				}
-				//print thread numbers t see if its working
-				//println!("thread = {}", norm);
+		
+		(norm+1..n_size).into_par_iter().for_each(|row| {
+			let multiplier = a[row][norm]/a[norm][norm];
+			
+			(norm..n_size).into_par_iter().for_each(|col| {
+				let mut at = a.clone();
+				at[row][col] -= at[norm][col] * multiplier;
 			});
-			//print number of chunks of threads
-			println!("chunk = {}", i);
-			threads_num.push(t);
-		}
-	
+			
+			let mut bt = b.clone();
+			bt[row] -= bt[norm] * multiplier;
+		});
 	}
-	
-	for t in threads_num {
-		t.join().expect("thread failed!");
-	}
-	
 	
 	for row in  (0..(n_size)).rev() {
 		x[row] = b[row];

@@ -75,7 +75,7 @@ fn main(){
 	} else if c == 4{ // parallel -- using Rayon
 		let start = Instant::now();
 		// Gauss Elimination
-		parallel::gauss(n_size, &mut b, &mut x, &mut a, num_thread);
+		parallel::gauss(n_size, &mut b, &mut x, &mut a);
 		let end = start.elapsed();
 		println!("Time elapsed: {:?}", end);
 		println!("Threads Number: 0");
