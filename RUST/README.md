@@ -16,6 +16,8 @@ Run:
 
 Number of threads is only needed for: Chunk, ThreadPool and ThreadPool with chunk. The number of threads can't be 0 for them.
 
+The number of choice needed is below.
+
 ### Choice:
 
 1.Serial
