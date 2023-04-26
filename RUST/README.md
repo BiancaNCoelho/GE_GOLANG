@@ -19,14 +19,25 @@ Number of threads is only needed for: Chunk, ThreadPool and ThreadPool with chun
 ### Choice:
 
 1.Serial
+
 > sequential.rs
+
 2.Threads
+
 > threads.rs
+
 3.Chunk
+
 > chunk.rs
+
 4.Parallel Rayon
+
 > parallel.rs
+
 5.ThreadPool using Rayon
+
 > pool.rs
+
 6.ThreadPool with chunk using Rayon
+
 > chunk_pool.rs
